@@ -112,6 +112,7 @@ config_file = "../source_config.json"
 concatenate_json_files(config_path, config_file)
 
 schemas_path = os.path.join(source_path, 'schemas')
+schemas_path = os.path.join(source_path, 'config/schemas')
 schemas_file = "../schemas.json"
 
 dump_json_files(schemas_path, schemas_file)
