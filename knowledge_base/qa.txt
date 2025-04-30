@@ -60,7 +60,7 @@ A: Currently Factory town from HoTA is not ported, as it requires brand new abil
 Q: For the question I wanted to know if I can play with level 8 creature form WoG? I tried playing WoG and I do load in and play with a commander, but I notice the normal setting for WoG is missing?
 A: WoG port has implemented only a few features. You can play with 8th level creatures submod. In such case, these creatures can be hired only in external dwellings (not town) or can be upgraded from 7th to  level with Magic Wand artifact.
 
-Q: How does the battlefield obstacle's blockedTile works? I'd like to fix wasteland obstacles.*
+Q: How does the battlefield obstacle's blockedTile works? I'd like to fix wasteland obstacles.
 A:
 If obstacle is marked as'absolute', then blockedTiles is simply list of blocked tile indexes, as in the following spreadhseet:
 
@@ -232,3 +232,6 @@ A: Tap on status bar (brown panel at the bottom). This should activate on-screen
 
 Q: Just installed HOTA and WOG on Android seem to be working. But not seeing new campaigns on either. Are HOTA or WOG campaigns available on mobile? Is factory available? 
 A: HoTA campaigns are not supported yet, but are planned. WoG campaigns are not supported and most likely will never be, as they require complex ERM scripts which VCMI does not recreate.
+
+Q: What is the current Status of HoTa 1.7.2 on VCMI?
+A: No new balance yet. Many defs are not jsonized at all.
