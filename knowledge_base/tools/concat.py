@@ -46,7 +46,7 @@ def concatenate_json_files(directory_path, output_file_path='output.json'):
 					# TODO: Parse to json string
 
 	with open(output_file_path, 'w', encoding='utf-8') as output_file:
-		output_file.write(json.dumps(file_contents, indent=4))
+		output_file.write(json.dumps(file_contents, indent='\t'))
 
 def dump_json_files(directory_path, output_file_path='output.json'):
 	
@@ -67,7 +67,7 @@ def dump_json_files(directory_path, output_file_path='output.json'):
 					# TODO: Parse to json string
 
 	with open(output_file_path, 'w', encoding='utf-8') as output_file:
-		output_file.write(json.dumps(file_contents, indent=4))
+		output_file.write(json.dumps(file_contents, indent='\t'))
 
 def concatenate_txt_files(directory_path, output_file_path):
 	"""
@@ -111,7 +111,30 @@ config_file = "../source_config.json"
 
 concatenate_json_files(config_path, config_file)
 
-schemas_path = os.path.join(source_path, 'schemas')
+schemas_path = os.path.join(source_path, 'config/schemas')
 schemas_file = "../schemas.json"
 
-dump_json_files(schemas_path, schemas_file)
+# Dump schemas as pretty-printed JSON using tabs for indentation
+def dump_json_files_pretty(directory_path, output_file_path):
+	"""
+	Parses all json files in the provided directory and dumps them to the output file as
+	pretty-formatted JSON with tab indentation.
+	"""
+	out = {}
+	for root, dirs, files in os.walk(directory_path):
+		for file in files:
+			if file.endswith(".json"):
+				file_path = os.path.join(root, file)
+				with open(file_path, 'r', encoding='utf-8') as f:
+					try:
+						text = f.read()
+						text = helper.remove_comments(text)
+						text = helper.fix_trailing_commas(text)
+						content = json.loads(text)
+						out[file] = content
+					except Exception as ex:
+						print(f"Error reading {file_path}: {ex}")
+	with open(output_file_path, 'w', encoding='utf-8') as f:
+		json.dump(out, f, indent="\t")
+
+dump_json_files_pretty(schemas_path, schemas_file)
